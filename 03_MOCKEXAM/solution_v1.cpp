@@ -5,12 +5,12 @@
 using namespace std;
 
 vector<int> solution(vector<int> answers) {
-    vector<int> solution = {0,0,0};
+    vector<int> solution = {0,0,0}; // 1,2,3등 순서대로 맞는 개수 저장
     vector<int> ans;
                     
     vector<int> one = {1,2,3,4,5}; // index % 6
     vector<int> two = {2,1,2,3,2,4,2,5}; // if ( % 2 ==0) 2; else cnt++%6;
-    vector<int> thr = {3,3,1,1,2,2,4,4,5,5};
+    vector<int> thr = {3,3,1,1,2,2,4,4,5,5}; 
     
     int one_idx = 0;
     int two_idx = 0; 
@@ -27,6 +27,7 @@ vector<int> solution(vector<int> answers) {
         if ( answers[i] == thr[thr_idx % (thr.size() + 1)])   
             solution[2] += 1;     
                     
+        // 아래 부분은 배열의 index를 초과하는 경우 다시 처음으로 돌아가게 하는 부분
         // cout << one[one_idx % (one.size() + 1)];
         one_idx++;
         if (one_idx == one.size()){
@@ -46,6 +47,7 @@ vector<int> solution(vector<int> answers) {
         }
     }
 
+    // 최대값을 찾고
     int max = -1;
     for (int i =0; i < solution.size(); i++)
     {
@@ -53,6 +55,7 @@ vector<int> solution(vector<int> answers) {
             max = solution[i];
     }
  
+    // 같은 값은 index 순서대로 넣어줌
     for (int i=0; i < solution.size(); i++)
     {
         if ( max == solution[i])
